@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance | Kunshak Trading Co.</title>
+    <style>
+        :root {
+            --accent: #f59e0b; /* Professional Gold/Amber */
+            --dark: #0f172a;
+            --text: #f8fafc;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--dark);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .maintenance-card {
+            text-align: center;
+            padding: 40px;
+            border-radius: 16px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        /* Pulsing Maintenance Dot */
+        .status-dot {
+            height: 12px;
+            width: 12px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            letter-spacing: -1px;
+        }
+
+        .brand {
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: #94a3b8;
+            max-width: 400px;
+            line-height: 1.6;
+            margin: 20px auto;
+        }
+
+        .gears {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .footer-link:hover {
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="maintenance-card">
+        <div class="gears">⚙️</div>
+        <div>
+            <span class="status-dot"></span>
+            <span style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">System Update in Progress</span>
+        </div>
+        <h1><span class="brand">KUNSHAK</span> TRADING</h1>
+        <p>We are currently upgrading our global trade portal to serve you better. We'll be back online shortly with a brand new experience.</p>
+        
+        <div style="margin-top: 40px;">
+            <a href="mailto:info@kunshak.com" class="footer-link">Inquiries: info@kunshak.com</a>
+        </div>
+    </div>
+
+</body>
+</html>
