@@ -3,149 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo.PNG">
-    <title>Kunshak Exports</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Kunshak Exports | Global Trade Excellence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@300;400;700&display=swap');
-        
         body { font-family: 'Lato', sans-serif; background-color: #fcfcfc; scroll-behavior: smooth; }
         .nav-font { font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
         .hero-title { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
-        
-        /* Updated Hero Container: Replaced video with static background */
         .hero-container {
-            background-color: #1a472a; /* Kunshak Primary Green */
+            background-color: #1a472a;
             background-image: linear-gradient(rgba(26, 71, 42, 0.85), rgba(26, 71, 42, 0.85)), 
-                              url('https://plus.unsplash.com/premium_photo-1661879449050-069f67e200bd?q=80&w=1122&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                              
-            background-size: cover;
-            background-position: center;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+                              url('https://plus.unsplash.com/premium_photo-1661879449050-069f67e200bd?q=80&w=1122&auto=format&fit=crop');
+            background-size: cover; background-position: center; height: 90vh; display: flex; align-items: center; justify-content: center;
         }
-
         .glass-nav { background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid #eee; }
-
-        .floating-btn {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .floating-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
+        .floating-btn { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .floating-btn:hover { transform: scale(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
+    <div id="productModal" class="fixed inset-0 z-[200] hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="bg-[#1a472a] p-6 text-white flex justify-between items-center sticky top-0">
+                <h3 id="modalTitle" class="nav-font font-bold text-lg uppercase tracking-wider text-[#c5a059]">Product Inquiry</h3>
+                <button onclick="closeModal()" class="text-white/70 hover:text-white"><i data-lucide="x"></i></button>
+            </div>
+            <div class="p-6 grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h4 id="analysisHeader" class="font-bold text-[#1a472a] mb-4 text-sm border-b pb-2 uppercase tracking-widest">Analysis</h4>
+                    <div id="agroAnalysis">
+                        <table class="w-full text-xs text-left">
+                            <tr class="border-b"><td class="py-2 text-gray-400">Purity</td><td class="py-2 font-bold">99% - 99.5%</td></tr>
+                            <tr class="border-b"><td class="py-2 text-gray-400">Moisture</td><td class="py-2 font-bold">8% Max</td></tr>
+                            <tr class="border-b"><td class="py-2 text-gray-400">Admixture</td><td class="py-2 font-bold">1% Max</td></tr>
+                            <tr><td class="py-2 text-gray-400">Salmonella</td><td class="py-2 font-bold">Absent</td></tr>
+                        </table>
+                        <p class="mt-4 text-[10px] text-gray-400 italic">*COA available upon order.</p>
+                    </div>
+                    <div id="craftAnalysis" class="hidden">
+                        <table class="w-full text-xs text-left">
+                            <tr class="border-b"><td class="py-2 text-gray-400">Material</td><td class="py-2 font-bold">Natural / Artisan Hub</td></tr>
+                            <tr class="border-b"><td class="py-2 text-gray-400">Finish</td><td class="py-2 font-bold">Hand-Polished</td></tr>
+                            <tr class="border-b"><td class="py-2 text-gray-400">Customization</td><td class="py-2 font-bold">Available</td></tr>
+                            <tr><td class="py-2 text-gray-400">Lead Time</td><td class="py-2 font-bold">Order Dependent</td></tr>
+                        </table>
+                        <p class="mt-4 text-[10px] text-gray-400 italic">*Each piece is handcrafted and unique.</p>
+                    </div>
+                </div>
+                
+                <form action="https://formspree.io/f/mjgarklk" method="POST" class="p-6 space-y-4">
+    <input type="hidden" id="selectedProduct" name="product_requested">
+    <input type="text" name="name" placeholder="Name" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
+    <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
+    
+    <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-1">
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Quantity Required</label>
+            <input type="text" name="quantity" placeholder="e.g. 5 MT" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
+        </div>
+        <div class="space-y-1">
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Target Delivery Date</label>
+            <input type="date" name="shipment_date" required class="w-full p-3 border rounded text-sm text-gray-500 focus:border-[#c5a059] outline-none">
+        </div>
+    </div>
+
+    <div class="space-y-3">
+        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Packaging Preference</label>
+        <select name="packaging_pref" class="w-full p-3 border rounded text-sm text-gray-600 outline-none focus:border-[#c5a059]">
+            <option value="25kg Jute Bags">25kg Jute Bags</option>
+            <option value="50kg PP Bags">50kg PP Bags</option>
+            <option value="Bulk Bags">Bulk Bags (1MT)</option>
+            <option value="Custom Packaging">Custom Packaging (Details below)</option>
+        </select>
+        <textarea name="custom_packaging_request" placeholder="Type your custom packaging request or desired info..." rows="2" class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none bg-yellow-50/30"></textarea>
+    </div>
+    <button type="submit" class="w-full bg-[#1a472a] text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#c5a059] transition shadow-lg">Submit Request</button>
+</form>
+            </div>
+        </div>
+    </div>
+
     <div class="fixed bottom-6 right-6 z-[100] flex flex-col gap-4">
-        <a href="https://www.linkedin.com/company/kunshakexport/" target="_blank" 
-           class="floating-btn bg-[#0077b5] text-white p-4 rounded-full flex items-center justify-center shadow-xl">
-            <i data-lucide="linkedin" class="w-6 h-6"></i>
-        </a>
-        <a href="https://wa.me/919893122319" target="_blank" 
-           class="floating-btn bg-[#25d366] text-white p-4 rounded-full flex items-center justify-center shadow-xl">
-            <i data-lucide="message-circle" class="w-6 h-6"></i>
-        </a>
+        <a href="https://www.linkedin.com/company/kunshakexport/" target="_blank" class="floating-btn bg-[#0077b5] text-white p-4 rounded-full flex items-center justify-center shadow-xl"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+        <a href="https://wa.me/919893122319" target="_blank" class="floating-btn bg-[#25d366] text-white p-4 rounded-full flex items-center justify-center shadow-xl"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
     </div>
 
     <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="nav-font font-bold text-xl tracking-tighter text-[#1a472a]">
-                    KUNSHAK <span class="text-[#c5a059]">EXPORTS</span>
-                </div>
-            </div>
-            
+            <div class="flex items-center space-x-2"><div class="nav-font font-bold text-xl tracking-tighter text-[#1a472a]">KUNSHAK <span class="text-[#c5a059]">EXPORTS</span></div></div>
             <div class="hidden md:flex flex-1 justify-center space-x-10 nav-font text-xs font-bold text-gray-600">
                 <a href="#about" class="hover:text-[#c5a059] transition">About Us</a>
                 <a href="#products" class="hover:text-[#c5a059] transition">Products</a>
-                <a href="#global" class="hover:text-[#c5a059] transition">Global Reach</a>
+                <a href="#global" class="hover:text-[#c5a059] transition">Logistics</a>
             </div>
-
             <a href="#contact" class="nav-font bg-[#1a472a] text-white px-6 py-2 rounded text-[10px] hover:bg-[#c5a059] transition">Enquire Now</a>
         </div>
     </nav>
 
     <section class="hero-container">
         <div class="relative z-10 text-center px-6" data-aos="fade-up">
-            <h1 class="hero-title text-4xl md:text-7xl text-white mb-6">Connecting Indian Agro & <br><span class="text-[#c5a059]">Handicrafts</span> Globally</h1>
-            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-light mb-10">
-                Exporting the finest Grains, Spices, and Artisan Crafts to the International Market.
-            </p>
+            <h1 class="hero-title text-4xl md:text-7xl text-white mb-6 uppercase tracking-tight">Exporting Quality <br><span class="text-[#c5a059]">Integrity & Reliability</span></h1>
+            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-light mb-10">Direct Sourcing from Central India. Connecting local farmers to the global marketplace.</p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#contact" class="bg-[#c5a059] text-white px-10 py-3 rounded font-bold transition hover:bg-white hover:text-black">Get Inquiry</a>
-                <a href="#products" class="border border-white text-white px-10 py-3 rounded font-bold hover:bg-white hover:text-black transition">Our Catalog</a>
+                <a href="#contact" class="bg-[#c5a059] text-white px-10 py-3 rounded font-bold transition hover:bg-white hover:text-black uppercase">Get Quote</a>
+                <a href="#products" class="border border-white text-white px-10 py-3 rounded font-bold hover:bg-white hover:text-black transition uppercase">Portfolio</a>
             </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-100 py-8 border-b">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-12 items-center opacity-60">
+            <div class="flex flex-col items-center"><i data-lucide="award" class="mb-1 text-[#1a472a]"></i><span class="text-[10px] font-bold uppercase tracking-widest">APEDA</span></div>
+            <div class="flex flex-col items-center"><i data-lucide="shield-check" class="mb-1 text-[#1a472a]"></i><span class="text-[10px] font-bold uppercase tracking-widest">FSSAI</span></div>
+            <div class="flex flex-col items-center"><i data-lucide="scroll-text" class="mb-1 text-[#1a472a]"></i><span class="text-[10px] font-bold uppercase tracking-widest">Spices Board</span></div>
+            <div class="flex flex-col items-center"><i data-lucide="check-circle" class="mb-1 text-[#1a472a]"></i><span class="text-[10px] font-bold uppercase tracking-widest">ISO 9001:2015</span></div>
         </div>
     </section>
 
     <section id="about" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div data-aos="fade-right">
-                <h2 class="hero-title text-4xl text-[#1a472a] mb-6">Quality Compliance & Integrity</h2>
-                <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Kunshak Exports is based in Jaora, Madhya Pradesh, specializing in the ethical sourcing and export of high-grade commodities. We operate with complete regulatory compliance, backed by all necessary export licenses and certifications.
-                </p>
-                <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80" class="rounded shadow-xl" alt="Global Trade">
+                <h2 class="hero-title text-4xl text-[#1a472a] mb-6">Ethical Sourcing & Compliance</h2>
+                <p class="text-gray-600 text-lg mb-8 leading-relaxed">Kunshak Exports is based in Jaora, Madhya Pradesh, specializing in the ethical sourcing and export of high-grade commodities. We operate with complete regulatory compliance, backed by all necessary export licenses and certifications.</p>
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="bg-gray-50 p-4 rounded-lg"><p class="text-xs font-bold text-gray-400 uppercase">Monthly Capacity</p><p class="text-xl font-bold text-[#1a472a]">100+ MT</p></div>
+                    <div class="bg-gray-50 p-4 rounded-lg"><p class="text-xs font-bold text-gray-400 uppercase">Origin</p><p class="text-xl font-bold text-[#1a472a]">Central India</p></div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop" class="rounded shadow-xl" alt="Global Trade">
             </div>
             <div class="space-y-6" data-aos="fade-left">
-                <div class="p-6 bg-gray-50 rounded border-l-4 border-[#1a472a]">
-                    <h4 class="font-bold text-lg mb-2">Direct Supply Chain</h4>
-                    <p class="text-sm text-gray-500">
-                        Sourcing premium commodities directly from their origin, ensuring freshness in agro-products and authenticity in handicrafts.
-                    </p>
-                </div>
-                <div class="p-6 bg-gray-50 rounded border-l-4 border-[#c5a059]">
-                    <h4 class="font-bold text-lg mb-2">Quality & Compliance</h4>
-                    <p class="text-sm text-gray-500">
-                        Rigorous selection and multi-level quality checks to meet the highest international export standards.
-                    </p>
-                </div>
+                <div class="p-6 bg-gray-50 rounded border-l-4 border-[#1a472a]"><h4 class="font-bold text-lg mb-2 uppercase">Lab Tested Quality</h4><p class="text-sm text-gray-500">Every batch is tested for purity, moisture content, and chemical residues before shipment.</p></div>
+                <div class="p-6 bg-gray-50 rounded border-l-4 border-[#c5a059]"><h4 class="font-bold text-lg mb-2 uppercase">Custom Export Packaging</h4><p class="text-sm text-gray-500">From 25kg bulk sacs to vacuum-sealed retail packs, we offer bespoke solutions for sea freight.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="products" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="hero-title text-center text-4xl text-[#1a472a] mb-16">Export Portfolio</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded overflow-hidden shadow-sm" data-aos="zoom-in">
-                    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80" class="h-64 w-full object-cover">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Premium Spices</h4>
-                        <p class="text-sm text-gray-500 mb-4">Fenugreek, Turmeric, Cumin & More.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded overflow-hidden shadow-sm" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1737735633629-f9ed8408a176?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Seeds</h4>
-                        <p class="text-sm text-gray-500 mb-4">Nigella Seeds & Pulses.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded overflow-hidden shadow-sm" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://plus.unsplash.com/premium_photo-1679852311419-0c1ce839a4e9?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="h-64 w-full object-cover">
-                    <div class="p-6">
-                        <h4 class="font-bold text-xl mb-2">Handicrafts</h4>
-                        <p class="text-sm text-gray-500 mb-4">Premium range of handcrafted Indian artifacts.</p>
-                    </div>
-                </div>
+    <section id="products" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <h2 class="hero-title text-center text-3xl md:text-4xl text-[#1a472a] mb-12 uppercase">Export Portfolio</h2>
+            <div class="flex flex-col md:flex-row justify-center mb-16 gap-4 px-4">
+                <button onclick="filterProducts('agro')" id="btn-agro" class="nav-font w-full md:w-auto px-8 py-4 rounded-full bg-[#1a472a] text-white font-bold shadow-lg transition text-sm">Agro Products</button>
+                <button onclick="filterProducts('crafts')" id="btn-crafts" class="nav-font w-full md:w-auto px-8 py-4 rounded-full border-2 border-[#c5a059] text-[#c5a059] font-bold transition text-sm">Artisan Crafts</button>
+            </div>
+
+            <div id="agro-list" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
+        <img src="https://images.pexels.com/photos/35156984/pexels-photo-35156984.jpeg" class="h-56 w-full object-cover">
+        <div class="p-6 flex flex-col items-center">
+            <h4 class="font-bold text-xl mb-4 text-[#1a472a]">Fenugreek Seeds</h4>
+            <button onclick="openModal('Fenugreek Seeds', 'agro')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
+        <img src="https://images.pexels.com/photos/35156986/pexels-photo-35156986.jpeg" class="h-56 w-full object-cover">
+        <div class="p-6 flex flex-col items-center">
+            <h4 class="font-bold text-xl mb-4 text-[#1a472a]">Nigella Seeds</h4>
+            <button onclick="openModal('Nigella Seeds', 'agro')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
+        <img src="https://images.pexels.com/photos/15352081/pexels-photo-15352081.jpeg" class="h-56 w-full object-cover">
+        <div class="p-6 flex flex-col items-center">
+            <h4 class="font-bold text-xl mb-4 text-[#1a472a]">Cumin Seeds</h4>
+            <button onclick="openModal('Cumin Seeds', 'agro')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
+        </div>
+    </div>
+</div>
+
+            <div id="craft-list" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://images.pexels.com/photos/8350218/pexels-photo-8350218.jpeg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Gemstone Spheres</h4><button onclick="openModal('Gemstone Spheres', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/1200x/ad/b5/33/adb53319b8c6c3581ed9c5d2fa0710e4.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Lippan Art</h4><button onclick="openModal('Lippan Art', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/80/ad/35/80ad3555b60a8299e4b3bfbc3ada0d09.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Blue Pottery</h4><button onclick="openModal('Artisan Decor', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/10/ee/6b/10ee6b15789790d21dbaebaffca4ba9f.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Marble Inlay</h4><button onclick="openModal('Marble Inlay', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/f8/71/ce/f871ceff2ea7dea0fe4aca0db7b6ccdf.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Wood Carvings</h4><button onclick="openModal('Wood Carvings', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/76/66/a8/7666a8f9bd18312e243aed9dc6462b99.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Zardozi and Chikankari</h4><button onclick="openModal('Wood Carvings', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/11/e6/bd/11e6bdc98a20224717686f86c32d0971.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Terracotta Artifacts</h4><button onclick="openModal('Terracotta', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/1200x/f4/4f/fc/f44ffcf2eeda46ab005e323b030c3702.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">French Ivory</h4><button onclick="openModal('Terracotta', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/16/60/98/166098d26ab92496bb3bd64f3e233f39.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Camel Leather</h4><button onclick="openModal('Terracotta', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
             </div>
         </div>
     </section>
 
     <section id="global" class="py-24 bg-[#1a472a] text-white">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="hero-title text-4xl mb-8">Global Export Network</h2>
-            <p class="text-gray-300 max-w-2xl mx-auto mb-16 font-light">
-                Reliable shipping and world-class documentation for seamless delivery to over 15+ countries.
-            </p>
-            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80" class="rounded shadow-2xl mx-auto max-w-3xl" alt="Shipping Logistics">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="hero-title text-4xl mb-8 uppercase text-[#c5a059]">Global Logistics Reach</h2>
+                <div class="space-y-6">
+                    <div class="flex items-start"><i data-lucide="anchor" class="text-[#c5a059] mr-4 w-6 h-6"></i><div><p class="font-bold uppercase tracking-widest">Primary Export Ports</p><p class="text-sm text-gray-400">Mundra Port (Gujarat) & Nhava Sheva (JNPT, Maharashtra).</p></div></div>
+                    <div class="flex items-start"><i data-lucide="truck" class="text-[#c5a059] mr-4 w-6 h-6"></i><div><p class="font-bold uppercase tracking-widest">Inland Logistics</p><p class="text-sm text-gray-400">Robust dry-cargo transport network from Jaora (M.P.) hub.</p></div></div>
+                    <div class="flex items-start"><i data-lucide="file-check" class="text-[#c5a059] mr-4 w-6 h-6"></i><div><p class="font-bold uppercase tracking-widest">Documentation</p><p class="text-sm text-gray-400">SGS inspection reports, Certificate of Origin, & BL provided.</p></div></div>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop" class="rounded shadow-2xl" alt="Shipping Logistics">
         </div>
     </section>
 
@@ -153,9 +208,9 @@
         <div class="max-w-5xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 border rounded-xl overflow-hidden shadow-lg">
                 <div class="p-10 bg-gray-50">
-                    <h3 class="hero-title text-2xl mb-6 text-[#1a472a]">Get in Touch</h3>
+                    <h3 class="hero-title text-2xl mb-6 text-[#1a472a] uppercase">Global Sales Inquiry</h3>
                     <div class="space-y-4 text-sm text-gray-600">
-                        <p><i data-lucide="map-pin" class="inline mr-2 text-[#c5a059]"></i> Jaora, Distt. Ratlam, MP, India</p>
+                        <p><i data-lucide="map-pin" class="inline mr-2 text-[#c5a059]"></i> 71, Patel Nagar, Jaora, MP, India</p>
                         <p><i data-lucide="phone" class="inline mr-2 text-[#c5a059]"></i> +91 98931 22319</p>
                         <p><i data-lucide="mail" class="inline mr-2 text-[#c5a059]"></i> info@kunshak.com</p>
                     </div>
@@ -164,30 +219,49 @@
                     <form action="https://formspree.io/f/mjgarklk" method="POST" class="space-y-4">
                         <input type="text" name="name" placeholder="Name" required class="w-full p-3 border rounded focus:border-[#c5a059] outline-none">
                         <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded focus:border-[#c5a059] outline-none">
-                        <textarea name="message" placeholder="Requirement" rows="4" class="w-full p-3 border rounded focus:border-[#c5a059] outline-none"></textarea>
-                        <button type="submit" class="w-full bg-[#1a472a] text-white py-3 rounded nav-font font-bold">Send Inquiry</button>
+                        <textarea name="message" placeholder="General Requirement" rows="4" class="w-full p-3 border rounded focus:border-[#c5a059] outline-none"></textarea>
+                        <button type="submit" class="w-full bg-[#1a472a] text-white py-4 rounded font-bold uppercase tracking-widest hover:bg-[#c5a059]">Send Inquiry</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 bg-white text-center border-t">
-        <div class="flex justify-center space-x-6 mb-4">
-            <a href="https://www.linkedin.com/company/kunshakexport/" target="_blank" class="text-gray-400 hover:text-[#0077b5] transition">
-                <i data-lucide="linkedin"></i>
-            </a>
-            <a href="https://wa.me/919893122319" target="_blank" class="text-gray-400 hover:text-[#25d366] transition">
-                <i data-lucide="message-circle"></i>
-            </a>
-        </div>
-        <p class="text-gray-400 text-xs">&copy; 2026 Kunshak Exports. All Rights Reserved.</p>
-    </footer>
+    <footer class="py-12 bg-white text-center border-t text-gray-400 text-xs"><p>&copy; 2026 Kunshak Exports. All Rights Reserved.</p></footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true });
-        lucide.createIcons();
+    function filterProducts(category) {
+        const agroList = document.getElementById('agro-list'); const craftList = document.getElementById('craft-list');
+        const btnAgro = document.getElementById('btn-agro'); const btnCrafts = document.getElementById('btn-crafts');
+        if(category === 'agro') {
+            agroList.style.display = 'grid'; craftList.style.display = 'none';
+            btnAgro.className = "nav-font px-8 py-4 rounded-full bg-[#1a472a] text-white font-bold shadow-lg transition";
+            btnCrafts.className = "nav-font px-8 py-4 rounded-full border-2 border-[#c5a059] text-[#c5a059] font-bold transition";
+        } else {
+            agroList.style.display = 'none'; craftList.style.display = 'grid';
+            btnAgro.className = "nav-font px-8 py-4 rounded-full border-2 border-[#1a472a] text-[#1a472a] font-bold transition";
+            btnCrafts.className = "nav-font px-8 py-4 rounded-full bg-[#c5a059] text-white font-bold shadow-lg transition";
+        }
+    }
+
+    function openModal(productName, category) {
+        document.getElementById('productModal').classList.remove('hidden');
+        document.getElementById('modalTitle').innerText = "Formal Inquiry: " + productName;
+        document.getElementById('selectedProduct').value = productName;
+        document.body.style.overflow = 'hidden';
+        if(category === 'crafts') {
+            document.getElementById('agroAnalysis').classList.add('hidden'); document.getElementById('craftAnalysis').classList.remove('hidden');
+            document.getElementById('analysisHeader').innerText = "Craft Specifications";
+        } else {
+            document.getElementById('agroAnalysis').classList.remove('hidden'); document.getElementById('craftAnalysis').classList.add('hidden');
+            document.getElementById('analysisHeader').innerText = "Technical Analysis";
+        }
+    }
+
+    function closeModal() { document.getElementById('productModal').classList.add('hidden'); document.body.style.overflow = 'auto'; }
+    window.onload = function() { filterProducts('agro'); };
     </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ once: true }); lucide.createIcons();</script>
 </body>
 </html>
