@@ -34,55 +34,42 @@
             </div>
             <div class="p-6 grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                    <h4 id="analysisHeader" class="font-bold text-[#1a472a] mb-4 text-sm border-b pb-2 uppercase tracking-widest">Analysis</h4>
-                    <div id="agroAnalysis">
-                        <table class="w-full text-xs text-left">
-                            <tr class="border-b"><td class="py-2 text-gray-400">Purity</td><td class="py-2 font-bold">99% - 99.5%</td></tr>
-                            <tr class="border-b"><td class="py-2 text-gray-400">Moisture</td><td class="py-2 font-bold">8% Max</td></tr>
-                            <tr class="border-b"><td class="py-2 text-gray-400">Admixture</td><td class="py-2 font-bold">1% Max</td></tr>
-                            <tr><td class="py-2 text-gray-400">Salmonella</td><td class="py-2 font-bold">Absent</td></tr>
-                        </table>
-                        <p class="mt-4 text-[10px] text-gray-400 italic">*COA available upon order.</p>
+                    <h4 id="analysisHeader" class="font-bold text-[#1a472a] mb-4 text-sm border-b pb-2 uppercase tracking-widest text-center">Specifications</h4>
+                    <div id="dynamicSpecsBody">
+                        <table class="w-full text-xs text-left" id="specTable">
+                            </table>
                     </div>
-                    <div id="craftAnalysis" class="hidden">
-                        <table class="w-full text-xs text-left">
-                            <tr class="border-b"><td class="py-2 text-gray-400">Material</td><td class="py-2 font-bold">Natural / Artisan Hub</td></tr>
-                            <tr class="border-b"><td class="py-2 text-gray-400">Finish</td><td class="py-2 font-bold">Hand-Polished</td></tr>
-                            <tr class="border-b"><td class="py-2 text-gray-400">Customization</td><td class="py-2 font-bold">Available</td></tr>
-                            <tr><td class="py-2 text-gray-400">Lead Time</td><td class="py-2 font-bold">Order Dependent</td></tr>
-                        </table>
-                        <p class="mt-4 text-[10px] text-gray-400 italic">*Each piece is handcrafted and unique.</p>
-                    </div>
+                    <p id="specFooter" class="mt-4 text-[10px] text-gray-400 italic text-center">*Details are subject to specific batch quality.</p>
                 </div>
                 
                 <form action="https://formspree.io/f/mjgarklk" method="POST" class="p-6 space-y-4">
-    <input type="hidden" id="selectedProduct" name="product_requested">
-    <input type="text" name="name" placeholder="Name" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
-    <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
-    
-    <div class="grid grid-cols-2 gap-4">
-        <div class="space-y-1">
-            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Quantity Required</label>
-            <input type="text" name="quantity" placeholder="e.g. 5 MT" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
-        </div>
-        <div class="space-y-1">
-            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Target Delivery Date</label>
-            <input type="date" name="shipment_date" required class="w-full p-3 border rounded text-sm text-gray-500 focus:border-[#c5a059] outline-none">
-        </div>
-    </div>
-
-    <div class="space-y-3">
-        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Packaging Preference</label>
-        <select name="packaging_pref" class="w-full p-3 border rounded text-sm text-gray-600 outline-none focus:border-[#c5a059]">
-            <option value="25kg Jute Bags">25kg Jute Bags</option>
-            <option value="50kg PP Bags">50kg PP Bags</option>
-            <option value="Bulk Bags">Bulk Bags (1MT)</option>
-            <option value="Custom Packaging">Custom Packaging (Details below)</option>
-        </select>
-        <textarea name="custom_packaging_request" placeholder="Type your custom packaging request or desired info..." rows="2" class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none bg-yellow-50/30"></textarea>
-    </div>
-    <button type="submit" class="w-full bg-[#1a472a] text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#c5a059] transition shadow-lg">Submit Request</button>
-</form>
+                    <input type="hidden" id="selectedProduct" name="product_requested">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" name="name" placeholder="Name" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
+                        <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Quantity Required</label>
+                            <input type="text" name="quantity" placeholder="e.g. 5 MT" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Target Delivery Date</label>
+                            <input type="date" name="shipment_date" required class="w-full p-3 border rounded text-sm text-gray-500 focus:border-[#c5a059] outline-none">
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Packaging Preference</label>
+                        <select name="packaging_pref" class="w-full p-3 border rounded text-sm text-gray-600 outline-none focus:border-[#c5a059]">
+                            <option value="25kg Jute Bags">25kg Jute Bags</option>
+                            <option value="50kg PP Bags">50kg PP Bags</option>
+                            <option value="Bulk Bags">Bulk Bags (1MT)</option>
+                            <option value="Custom Packaging">Custom Packaging (Details below)</option>
+                        </select>
+                        <textarea name="custom_packaging_request" placeholder="Type your custom packaging request or desired info..." rows="2" class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none bg-yellow-50/30"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-[#1a472a] text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#c5a059] transition shadow-lg">Submit Request</button>
+                </form>
             </div>
         </div>
     </div>
@@ -107,7 +94,7 @@
     <section class="hero-container">
         <div class="relative z-10 text-center px-6" data-aos="fade-up">
             <h1 class="hero-title text-4xl md:text-7xl text-white mb-6 uppercase tracking-tight">Exporting Quality <br><span class="text-[#c5a059]">Integrity & Reliability</span></h1>
-            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-light mb-10">Direct Sourcing from India. Connecting Indian craftsmanship & harvest to the global marketplace.</p>
+            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-light mb-10">Direct Sourcing from Central India. Connecting local producers to the global marketplace.</p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
                 <a href="#contact" class="bg-[#c5a059] text-white px-10 py-3 rounded font-bold transition hover:bg-white hover:text-black uppercase">Get Quote</a>
                 <a href="#products" class="border border-white text-white px-10 py-3 rounded font-bold hover:bg-white hover:text-black transition uppercase">Portfolio</a>
@@ -128,7 +115,7 @@
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div data-aos="fade-right">
                 <h2 class="hero-title text-4xl text-[#1a472a] mb-6">Ethical Sourcing & Compliance</h2>
-                <p class="text-gray-600 text-lg mb-8 leading-relaxed">Kunshak Exports is based in Jaora, Madhya Pradesh, specializing in the ethical sourcing and export of high-grade commodities. We operate with complete regulatory compliance, backed by all necessary export licenses and certifications.</p>
+                <p class="text-gray-600 text-lg mb-8 leading-relaxed">Kunshak Exports is based in Jaora, Madhya Pradesh, specializing in the ethical sourcing and export of high-grade commodities. We operate with complete regulatory compliance.</p>
                 <div class="grid grid-cols-2 gap-4 mb-8">
                     <div class="bg-gray-50 p-4 rounded-lg"><p class="text-xs font-bold text-gray-400 uppercase">Monthly Capacity</p><p class="text-xl font-bold text-[#1a472a]">100+ MT</p></div>
                     <div class="bg-gray-50 p-4 rounded-lg"><p class="text-xs font-bold text-gray-400 uppercase">Origin</p><p class="text-xl font-bold text-[#1a472a]">Central India</p></div>
@@ -136,8 +123,8 @@
                 <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop" class="rounded shadow-xl" alt="Global Trade">
             </div>
             <div class="space-y-6" data-aos="fade-left">
-                <div class="p-6 bg-gray-50 rounded border-l-4 border-[#1a472a]"><h4 class="font-bold text-lg mb-2 uppercase">Lab Tested Quality</h4><p class="text-sm text-gray-500">Every batch is tested for purity, moisture content, and chemical residues before shipment.</p></div>
-                <div class="p-6 bg-gray-50 rounded border-l-4 border-[#c5a059]"><h4 class="font-bold text-lg mb-2 uppercase">Custom Export Packaging</h4><p class="text-sm text-gray-500">From 25kg bulk sacs to vacuum-sealed retail packs, we offer bespoke solutions for sea freight.</p></div>
+                <div class="p-6 bg-gray-50 rounded border-l-4 border-[#1a472a]"><h4 class="font-bold text-lg mb-2 uppercase">Lab Tested Quality</h4><p class="text-sm text-gray-500">Every batch is tested for purity, moisture content, and residues.</p></div>
+                <div class="p-6 bg-gray-50 rounded border-l-4 border-[#c5a059]"><h4 class="font-bold text-lg mb-2 uppercase">Custom Export Packaging</h4><p class="text-sm text-gray-500">Bespoke solutions to protect product integrity during freight.</p></div>
             </div>
         </div>
     </section>
@@ -151,41 +138,30 @@
             </div>
 
             <div id="agro-list" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
-        <img src="https://images.pexels.com/photos/35156984/pexels-photo-35156984.jpeg" class="h-56 w-full object-cover">
-        <div class="p-6 flex flex-col items-center">
-            <h4 class="font-bold text-xl mb-4 text-[#1a472a]">Fenugreek Seeds</h4>
-            <button onclick="openModal('Fenugreek Seeds', 'agro')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
-        </div>
-    </div>
-
-    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
-        <img src="https://images.pexels.com/photos/35156986/pexels-photo-35156986.jpeg" class="h-56 w-full object-cover">
-        <div class="p-6 flex flex-col items-center">
-            <h4 class="font-bold text-xl mb-4 text-[#1a472a]">Nigella Seeds</h4>
-            <button onclick="openModal('Nigella Seeds', 'agro')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
-        </div>
-    </div>
-
-    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
-        <img src="https://images.pexels.com/photos/15352081/pexels-photo-15352081.jpeg" class="h-56 w-full object-cover">
-        <div class="p-6 flex flex-col items-center">
-            <h4 class="font-bold text-xl mb-4 text-[#1a472a]">Cumin Seeds</h4>
-            <button onclick="openModal('Cumin Seeds', 'agro')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
-        </div>
-    </div>
-</div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow">
+                    <img src="https://images.pexels.com/photos/35156984/pexels-photo-35156984.jpeg" class="h-56 w-full object-cover">
+                    <div class="p-6 flex flex-col items-center"><h4 class="font-bold text-xl mb-4 text-[#1a472a]">Fenugreek Seeds</h4><button onclick="openModal('Fenugreek Seeds')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059]">Enquire Now</button></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow">
+                    <img src="https://images.pexels.com/photos/35156986/pexels-photo-35156986.jpeg" class="h-56 w-full object-cover">
+                    <div class="p-6 flex flex-col items-center"><h4 class="font-bold text-xl mb-4 text-[#1a472a]">Nigella Seeds</h4><button onclick="openModal('Nigella Seeds')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059]">Enquire Now</button></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow">
+                    <img src="https://images.pexels.com/photos/15352081/pexels-photo-15352081.jpeg" class="h-56 w-full object-cover">
+                    <div class="p-6 flex flex-col items-center"><h4 class="font-bold text-xl mb-4 text-[#1a472a]">Cumin Seeds</h4><button onclick="openModal('Cumin Seeds')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059]">Enquire Now</button></div>
+                </div>
+            </div>
 
             <div id="craft-list" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://images.pexels.com/photos/8350218/pexels-photo-8350218.jpeg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Gemstone Spheres</h4><button onclick="openModal('Gemstone Spheres', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/1200x/ad/b5/33/adb53319b8c6c3581ed9c5d2fa0710e4.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Lippan Art</h4><button onclick="openModal('Lippan Art', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/80/ad/35/80ad3555b60a8299e4b3bfbc3ada0d09.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Blue Pottery</h4><button onclick="openModal('Artisan Decor', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/10/ee/6b/10ee6b15789790d21dbaebaffca4ba9f.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Marble Inlay</h4><button onclick="openModal('Marble Inlay', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/f8/71/ce/f871ceff2ea7dea0fe4aca0db7b6ccdf.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Wood Carvings</h4><button onclick="openModal('Wood Carvings', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/76/66/a8/7666a8f9bd18312e243aed9dc6462b99.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Zardozi and Chikankari</h4><button onclick="openModal('Wood Carvings', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/11/e6/bd/11e6bdc98a20224717686f86c32d0971.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Terracotta Artifacts</h4><button onclick="openModal('Terracotta', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/1200x/f4/4f/fc/f44ffcf2eeda46ab005e323b030c3702.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">French Ivory</h4><button onclick="openModal('Terracotta', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100"><img src="https://i.pinimg.com/736x/16/60/98/166098d26ab92496bb3bd64f3e233f39.jpg" class="h-56 w-full object-cover"><div class="p-6 text-center flex-grow flex flex-col justify-between"><h4 class="font-bold text-lg mb-4 text-[#1a472a]">Camel Leather</h4><button onclick="openModal('Terracotta', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://images.pexels.com/photos/8350218/pexels-photo-8350218.jpeg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Gemstone Spheres</h4><button onclick="openModal('Gemstone Spheres')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/1200x/ad/b5/33/adb53319b8c6c3581ed9c5d2fa0710e4.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Lippan Art</h4><button onclick="openModal('Lippan Art')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/80/ad/35/80ad3555b60a8299e4b3bfbc3ada0d09.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Blue Pottery</h4><button onclick="openModal('Blue Pottery')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/10/ee/6b/10ee6b15789790d21dbaebaffca4ba9f.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Marble Inlay</h4><button onclick="openModal('Marble Inlay')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/f8/71/ce/f871ceff2ea7dea0fe4aca0db7b6ccdf.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Wood Carvings</h4><button onclick="openModal('Wood Carvings')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/76/66/a8/7666a8f9bd18312e243aed9dc6462b99.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Zardozi Work</h4><button onclick="openModal('Zardozi & Chikankari')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/11/e6/bd/11e6bdc98a20224717686f86c32d0971.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Terracotta Artifacts</h4><button onclick="openModal('Terracotta')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/1200x/f4/4f/fc/f44ffcf2eeda46ab005e323b030c3702.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">French Ivory</h4><button onclick="openModal('French Ivory')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/16/60/98/166098d26ab92496bb3bd64f3e233f39.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Camel Leather</h4><button onclick="openModal('Camel Leather')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
             </div>
         </div>
     </section>
@@ -230,31 +206,52 @@
     <footer class="py-12 bg-white text-center border-t text-gray-400 text-xs"><p>&copy; 2026 Kunshak Exports. All Rights Reserved.</p></footer>
 
     <script>
+    // DYNAMIC DATA STORAGE
+    const productData = {
+        "Fenugreek Seeds": { header: "Technical Analysis", specs: { "Purity": "99.5% Min", "Moisture": "8% Max", "Admixture": "1% Max", "Salmonella": "Absent" }},
+        "Nigella Seeds": { header: "Technical Analysis", specs: { "Oil Content": "30% Min", "Purity": "99% Min", "Moisture": "9% Max", "Color": "Deep Black" }},
+        "Cumin Seeds": { header: "Technical Analysis", specs: { "Purity": "99.5% Min", "Volatile Oil": "2% Min", "Moisture": "10% Max", "Grade": "Machine Cleaned" }},
+        "Gemstone Spheres": { header: "Craft Specifications", specs: { "Material": "Natural Stone", "Finish": "Gloss Polish", "Size": "20mm - 100mm", "Custom": "Available" }},
+        "Lippan Art": { header: "Artisan Details", specs: { "Material": "Clay & Mirror", "Base": "MDF / Wood", "Style": "Kutch Traditional", "Durability": "High" }},
+        "Blue Pottery": { header: "Craft Specifications", specs: { "Material": "Quartz/Glass", "Technique": "Free-Hand Paint", "Firing": "Low Heat", "Lead": "Lead-Free" }},
+        "Marble Inlay": { header: "Artisan Details", specs: { "Base": "Makrana Marble", "Inlay": "Semi-Precious Stones", "Finish": "Mirror Polish", "Origin": "Agra Heritage" }},
+        "Wood Carvings": { header: "Craft Specifications", specs: { "Wood Type": "Sheesham / Teak", "Style": "Intricate Jali", "Finish": "Natural / Wax", "Lead Time": "Order Based" }},
+        "Zardozi & Chikankari": { header: "Craft Specifications", specs: { "Fabric": "Cotton / Silk", "Work": "Hand Embroidery", "Origin": "Lucknow Artisan", "Thread": "Silk / Metallic" }},
+        "Terracotta Artifacts": { header: "Artisan Details", specs: { "Material": "Natural Clay", "Firing": "Traditional Kiln", "Finish": "Raw / Earthen" }},
+        "French Ivory": { header: "Craft Specifications", specs: { "Material": "Synthetic Resins", "Finish": "Antique Cream", "Usage": "Premium Decor" }},
+        "Camel Leather": { header: "Artisan Details", specs: { "Material": "Genuine Hide", "Tanning": "Vegetable Tanned", "Style": "Embossed", "Products": "Bags / Shoes" }}
+    };
+
     function filterProducts(category) {
         const agroList = document.getElementById('agro-list'); const craftList = document.getElementById('craft-list');
         const btnAgro = document.getElementById('btn-agro'); const btnCrafts = document.getElementById('btn-crafts');
         if(category === 'agro') {
             agroList.style.display = 'grid'; craftList.style.display = 'none';
-            btnAgro.className = "nav-font px-8 py-4 rounded-full bg-[#1a472a] text-white font-bold shadow-lg transition";
-            btnCrafts.className = "nav-font px-8 py-4 rounded-full border-2 border-[#c5a059] text-[#c5a059] font-bold transition";
+            btnAgro.className = "nav-font px-8 py-3 rounded-full bg-[#1a472a] text-white font-bold shadow-lg transition";
+            btnCrafts.className = "nav-font px-8 py-3 rounded-full border-2 border-[#c5a059] text-[#c5a059] font-bold transition";
         } else {
             agroList.style.display = 'none'; craftList.style.display = 'grid';
-            btnAgro.className = "nav-font px-8 py-4 rounded-full border-2 border-[#1a472a] text-[#1a472a] font-bold transition";
-            btnCrafts.className = "nav-font px-8 py-4 rounded-full bg-[#c5a059] text-white font-bold shadow-lg transition";
+            btnAgro.className = "nav-font px-8 py-3 rounded-full border-2 border-[#1a472a] text-[#1a472a] font-bold transition";
+            btnCrafts.className = "nav-font px-8 py-3 rounded-full bg-[#c5a059] text-white font-bold shadow-lg transition";
         }
     }
 
-    function openModal(productName, category) {
+    function openModal(productName) {
         document.getElementById('productModal').classList.remove('hidden');
-        document.getElementById('modalTitle').innerText = "Formal Inquiry: " + productName;
+        document.getElementById('modalTitle').innerText = "Inquiry: " + productName;
         document.getElementById('selectedProduct').value = productName;
         document.body.style.overflow = 'hidden';
-        if(category === 'crafts') {
-            document.getElementById('agroAnalysis').classList.add('hidden'); document.getElementById('craftAnalysis').classList.remove('hidden');
-            document.getElementById('analysisHeader').innerText = "Craft Specifications";
-        } else {
-            document.getElementById('agroAnalysis').classList.remove('hidden'); document.getElementById('craftAnalysis').classList.add('hidden');
-            document.getElementById('analysisHeader').innerText = "Technical Analysis";
+
+        const data = productData[productName];
+        const table = document.getElementById('specTable');
+        const header = document.getElementById('analysisHeader');
+        table.innerHTML = "";
+        
+        if (data) {
+            header.innerText = data.header;
+            for (const [key, value] of Object.entries(data.specs)) {
+                table.innerHTML += `<tr class="border-b"><td class="py-2 text-gray-400 uppercase text-[10px]">${key}</td><td class="py-2 font-bold text-right text-xs">${value}</td></tr>`;
+            }
         }
     }
 
