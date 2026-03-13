@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo.PNG">
-    <title>Kunshak Exports</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Kunshak Exports | Global Trade Excellence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -36,8 +36,7 @@
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
                     <h4 id="analysisHeader" class="font-bold text-[#1a472a] mb-4 text-sm border-b pb-2 uppercase tracking-widest text-center">Specifications</h4>
                     <div id="dynamicSpecsBody">
-                        <table class="w-full text-xs text-left" id="specTable">
-                            </table>
+                        <table class="w-full text-xs text-left" id="specTable"></table>
                     </div>
                     <p id="specFooter" class="mt-4 text-[10px] text-gray-400 italic text-center">*Details are subject to specific batch quality.</p>
                 </div>
@@ -50,8 +49,8 @@
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-1">
-                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Quantity Required</label>
-                            <input type="text" name="quantity" placeholder="e.g. 5 MT" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
+                            <label id="qtyLabel" class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Quantity Required</label>
+                            <input type="text" id="qtyInput" name="quantity" placeholder="e.g. 5 MT" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
                         </div>
                         <div class="space-y-1">
                             <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Target Delivery Date</label>
@@ -59,24 +58,15 @@
                         </div>
                     </div>
                     <div class="space-y-3">
-                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Packaging Preference</label>
-                        <select name="packaging_pref" class="w-full p-3 border rounded text-sm text-gray-600 outline-none focus:border-[#c5a059]">
-                            <option value="25kg Jute Bags">25kg Jute Bags</option>
-                            <option value="50kg PP Bags">50kg PP Bags</option>
-                            <option value="Bulk Bags">Bulk Bags (1MT)</option>
-                            <option value="Custom Packaging">Custom Packaging (Details below)</option>
-                        </select>
-                        <textarea name="custom_packaging_request" placeholder="Type your custom packaging request or desired info..." rows="2" class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none bg-yellow-50/30"></textarea>
+                        <label id="packLabel" class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Packaging Preference</label>
+                        <select id="packDropdown" name="packaging_pref" class="w-full p-3 border rounded text-sm text-gray-600 outline-none focus:border-[#c5a059]">
+                            </select>
+                        <textarea name="custom_packaging_request" placeholder="Any other specific requests (Custom size, design, or info)..." rows="2" class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none bg-yellow-50/30"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-[#1a472a] text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-[#c5a059] transition shadow-lg">Submit Request</button>
                 </form>
             </div>
         </div>
-    </div>
-
-    <div class="fixed bottom-6 right-6 z-[100] flex flex-col gap-4">
-        <a href="https://www.linkedin.com/company/kunshakexport/" target="_blank" class="floating-btn bg-[#0077b5] text-white p-4 rounded-full flex items-center justify-center shadow-xl"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
-        <a href="https://wa.me/919893122319" target="_blank" class="floating-btn bg-[#25d366] text-white p-4 rounded-full flex items-center justify-center shadow-xl"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
     </div>
 
     <nav class="fixed w-full z-50 glass-nav">
@@ -130,53 +120,137 @@
     </section>
 
     <section id="products" class="py-16 md:py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <h2 class="hero-title text-center text-3xl md:text-4xl text-[#1a472a] mb-12 uppercase">Export Portfolio</h2>
-            <div class="flex flex-col md:flex-row justify-center mb-16 gap-4 px-4">
-                <button onclick="filterProducts('agro')" id="btn-agro" class="nav-font w-full md:w-auto px-8 py-4 rounded-full bg-[#1a472a] text-white font-bold shadow-lg transition text-sm">Agro Products</button>
-                <button onclick="filterProducts('crafts')" id="btn-crafts" class="nav-font w-full md:w-auto px-8 py-4 rounded-full border-2 border-[#c5a059] text-[#c5a059] font-bold transition text-sm">Artisan Crafts</button>
-            </div>
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <h2 class="hero-title text-center text-3xl md:text-4xl text-[#1a472a] mb-12 uppercase">Export Portfolio</h2>
+        <div class="flex flex-col md:flex-row justify-center mb-16 gap-4 px-4">
+            <button onclick="filterProducts('agro')" id="btn-agro" class="nav-font w-full md:w-auto px-8 py-4 rounded-full bg-[#1a472a] text-white font-bold shadow-lg transition text-sm">Agro Products</button>
+            <button onclick="filterProducts('crafts')" id="btn-crafts" class="nav-font w-full md:w-auto px-8 py-4 rounded-full border-2 border-[#c5a059] text-[#c5a059] font-bold transition text-sm">Artisan Crafts</button>
+        </div>
 
-            <div id="agro-list" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow">
-                    <img src="https://images.pexels.com/photos/35156984/pexels-photo-35156984.jpeg" class="h-56 w-full object-cover">
-                    <div class="p-6 flex flex-col items-center"><h4 class="font-bold text-xl mb-4 text-[#1a472a]">Fenugreek Seeds</h4><button onclick="openModal('Fenugreek Seeds')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059]">Enquire Now</button></div>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow">
-                    <img src="https://images.pexels.com/photos/35156986/pexels-photo-35156986.jpeg" class="h-56 w-full object-cover">
-                    <div class="p-6 flex flex-col items-center"><h4 class="font-bold text-xl mb-4 text-[#1a472a]">Nigella Seeds</h4><button onclick="openModal('Nigella Seeds')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059]">Enquire Now</button></div>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow">
-                    <img src="https://images.pexels.com/photos/15352081/pexels-photo-15352081.jpeg" class="h-56 w-full object-cover">
-                    <div class="p-6 flex flex-col items-center"><h4 class="font-bold text-xl mb-4 text-[#1a472a]">Cumin Seeds</h4><button onclick="openModal('Cumin Seeds')" class="w-full bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059]">Enquire Now</button></div>
+        <div id="agro-list" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="https://images.pexels.com/photos/35156984/pexels-photo-35156984.jpeg" class="h-56 w-full object-cover">
+                <div class="p-6 flex flex-col items-center flex-grow">
+                    <h4 class="font-bold text-xl mb-2 text-[#1a472a]">Fenugreek Seeds</h4>
+                    <p class="text-gray-500 text-xs text-center mb-4 leading-relaxed italic">High-purity seeds sourced directly from Malwa farms, ideal for medicinal and culinary use.</p>
+                    <button onclick="openModal('Fenugreek Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
                 </div>
             </div>
 
-            <div id="craft-list" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://images.pexels.com/photos/8350218/pexels-photo-8350218.jpeg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Gemstone Spheres</h4><button onclick="openModal('Gemstone Spheres')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/1200x/ad/b5/33/adb53319b8c6c3581ed9c5d2fa0710e4.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Lippan Art</h4><button onclick="openModal('Lippan Art')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/80/ad/35/80ad3555b60a8299e4b3bfbc3ada0d09.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Blue Pottery</h4><button onclick="openModal('Blue Pottery')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/10/ee/6b/10ee6b15789790d21dbaebaffca4ba9f.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Marble Inlay</h4><button onclick="openModal('Marble Inlay')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/f8/71/ce/f871ceff2ea7dea0fe4aca0db7b6ccdf.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Wood Carvings</h4><button onclick="openModal('Wood Carvings')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/76/66/a8/7666a8f9bd18312e243aed9dc6462b99.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Zardozi Work</h4><button onclick="openModal('Zardozi & Chikankari')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/11/e6/bd/11e6bdc98a20224717686f86c32d0971.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Terracotta Artifacts</h4><button onclick="openModal('Terracotta')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/1200x/f4/4f/fc/f44ffcf2eeda46ab005e323b030c3702.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">French Ivory</h4><button onclick="openModal('French Ivory')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow"><img src="https://i.pinimg.com/736x/16/60/98/166098d26ab92496bb3bd64f3e233f39.jpg" class="h-56 w-full object-cover"><div class="p-6 flex flex-col items-center"><h4 class="font-bold text-lg mb-4">Camel Leather</h4><button onclick="openModal('Camel Leather')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button></div></div>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="https://images.pexels.com/photos/35156986/pexels-photo-35156986.jpeg" class="h-56 w-full object-cover">
+                <div class="p-6 flex flex-col items-center flex-grow">
+                    <h4 class="font-bold text-xl mb-2 text-[#1a472a]">Nigella Seeds</h4>
+                    <p class="text-gray-500 text-xs text-center mb-4 leading-relaxed italic">Premium Kalonji seeds with high oil content and deep black color, sortex cleaned for global export.</p>
+                    <button onclick="openModal('Nigella Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="https://images.pexels.com/photos/15352081/pexels-photo-15352081.jpeg" class="h-56 w-full object-cover">
+                <div class="p-6 flex flex-col items-center flex-grow">
+                    <h4 class="font-bold text-xl mb-2 text-[#1a472a]">Cumin Seeds</h4>
+                    <p class="text-gray-500 text-xs text-center mb-4 leading-relaxed italic">Bold aroma and 99.5% purity machine-cleaned Jeera, processed to retain essential oils.</p>
+                    <button onclick="openModal('Cumin Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-[#c5a059] transition-colors shadow-md">Enquire Now</button>
+                </div>
             </div>
         </div>
-    </section>
+
+        <div id="craft-list" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://images.pexels.com/photos/8350218/pexels-photo-8350218.jpeg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">Gemstone Spheres</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Natural mineral stones hand-polished to a high gloss finish, perfect for luxury interior decor.</p>
+                    <button onclick="openModal('Gemstone Spheres', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://i.pinimg.com/1200x/ad/b5/33/adb53319b8c6c3581ed9c5d2fa0710e4.jpg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">Lippan Art</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Authentic Kutch clay-mirror work on wood, showcasing India's rich nomadic tribal heritage.</p>
+                    <button onclick="openModal('Lippan Art', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://i.pinimg.com/736x/80/ad/35/80ad3555b60a8299e4b3bfbc3ada0d09.jpg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">Blue Pottery</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Turquoise glazed pottery hand-painted with cobalt oxide, a timeless Jaipur craft specialty.</p>
+                    <button onclick="openModal('Blue Pottery', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://i.pinimg.com/736x/10/ee/6b/10ee6b15789790d21dbaebaffca4ba9f.jpg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">Marble Inlay</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Exquisite 'Pietra Dura' art where semi-precious stones are hand-embedded in premium marble.</p>
+                    <button onclick="openModal('Marble Inlay', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://i.pinimg.com/736x/f8/71/ce/f871ceff2ea7dea0fe4aca0db7b6ccdf.jpg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">Wood Carvings</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Intricately carved Saharanpur woodcraft featuring traditional jali patterns and a wax finish.</p>
+                    <button onclick="openModal('Wood Carvings', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://i.pinimg.com/736x/76/66/a8/7666a8f9bd18312e243aed9dc6462b99.jpg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">Zardozi Work</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Heavy metal-thread embroidery for high-end boutique fashion and luxury textile decor.</p>
+                    <button onclick="openModal('Zardozi & Chikankari', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://i.pinimg.com/736x/11/e6/bd/11e6bdc98a20224717686f86c32d0971.jpg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">Terracotta Artifacts</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Eco-friendly kiln-fired clay artifacts, capturing the raw essence of Indian rural craftsmanship.</p>
+                    <button onclick="openModal('Terracotta', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://i.pinimg.com/1200x/f4/4f/fc/f44ffcf2eeda46ab005e323b030c3702.jpg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">French Ivory</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Exquisitely detailed antique-style resins that mimic natural ivory for premium art collectors.</p>
+                    <button onclick="openModal('French Ivory', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full border border-gray-100">
+                <img src="https://i.pinimg.com/736x/16/60/98/166098d26ab92496bb3bd64f3e233f39.jpg" class="h-56 w-full object-cover">
+                <div class="p-6 text-center flex-grow flex flex-col">
+                    <h4 class="font-bold text-lg mb-2 text-[#1a472a]">Camel Leather</h4>
+                    <p class="text-gray-500 text-[11px] mb-4 flex-grow italic">Durable, vegetable-tanned hide featuring traditional embossed motifs from the desert artisans.</p>
+                    <button onclick="openModal('Camel Leather', 'crafts')" class="w-full bg-[#c5a059] text-white py-3 rounded font-bold text-xs uppercase hover:bg-[#1a472a]">Enquire Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section id="global" class="py-24 bg-[#1a472a] text-white">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div>
                 <h2 class="hero-title text-4xl mb-8 uppercase text-[#c5a059]">Global Logistics Reach</h2>
                 <div class="space-y-6">
-                    <div class="flex items-start"><i data-lucide="anchor" class="text-[#c5a059] mr-4 w-6 h-6"></i><div><p class="font-bold uppercase tracking-widest">Primary Export Ports</p><p class="text-sm text-gray-400">Mundra Port (Gujarat) & Nhava Sheva (JNPT, Maharashtra).</p></div></div>
-                    <div class="flex items-start"><i data-lucide="truck" class="text-[#c5a059] mr-4 w-6 h-6"></i><div><p class="font-bold uppercase tracking-widest">Inland Logistics</p><p class="text-sm text-gray-400">Robust dry-cargo transport network from Jaora (M.P.) hub.</p></div></div>
-                    <div class="flex items-start"><i data-lucide="file-check" class="text-[#c5a059] mr-4 w-6 h-6"></i><div><p class="font-bold uppercase tracking-widest">Documentation</p><p class="text-sm text-gray-400">SGS inspection reports, Certificate of Origin, & BL provided.</p></div></div>
+                    <div class="flex items-start"><i data-lucide="anchor" class="text-[#c5a059] mr-4 w-6 h-6"></i><div><p class="font-bold uppercase tracking-widest">Primary Ports</p><p class="text-sm text-gray-400">Mundra Port (Gujarat) & Nhava Sheva (JNPT).</p></div></div>
+                    <div class="flex items-start"><i data-lucide="truck" class="text-[#c5a059] mr-4 w-6 h-6"></i><div><p class="font-bold uppercase tracking-widest">Inland Logistics</p><p class="text-sm text-gray-400">Dry-cargo transport network from Jaora (M.P.).</p></div></div>
                 </div>
             </div>
-            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop" class="rounded shadow-2xl" alt="Shipping Logistics">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop" class="rounded shadow-2xl" alt="Logistics">
         </div>
     </section>
 
@@ -186,9 +260,8 @@
                 <div class="p-10 bg-gray-50">
                     <h3 class="hero-title text-2xl mb-6 text-[#1a472a] uppercase">Global Sales Inquiry</h3>
                     <div class="space-y-4 text-sm text-gray-600">
-                        <p><i data-lucide="map-pin" class="inline mr-2 text-[#c5a059]"></i> 71, Patel Nagar, Jaora, MP, India</p>
+                        <p><i data-lucide="map-pin" class="inline mr-2 text-[#c5a059]"></i> Jaora, MP, India | info@kunshak.com</p>
                         <p><i data-lucide="phone" class="inline mr-2 text-[#c5a059]"></i> +91 98931 22319</p>
-                        <p><i data-lucide="mail" class="inline mr-2 text-[#c5a059]"></i> info@kunshak.com</p>
                     </div>
                 </div>
                 <div class="p-10">
@@ -206,20 +279,19 @@
     <footer class="py-12 bg-white text-center border-t text-gray-400 text-xs"><p>&copy; 2026 Kunshak Exports. All Rights Reserved.</p></footer>
 
     <script>
-    // DYNAMIC DATA STORAGE
     const productData = {
         "Fenugreek Seeds": { header: "Technical Analysis", specs: { "Purity": "99.5% Min", "Moisture": "8% Max", "Admixture": "1% Max", "Salmonella": "Absent" }},
         "Nigella Seeds": { header: "Technical Analysis", specs: { "Oil Content": "30% Min", "Purity": "99% Min", "Moisture": "9% Max", "Color": "Deep Black" }},
-        "Cumin Seeds": { header: "Technical Analysis", specs: { "Purity": "99.5% Min", "Volatile Oil": "2% Min", "Moisture": "10% Max", "Grade": "Machine Cleaned" }},
-        "Gemstone Spheres": { header: "Craft Specifications", specs: { "Material": "Natural Stone", "Finish": "Gloss Polish", "Size": "20mm - 100mm", "Custom": "Available" }},
-        "Lippan Art": { header: "Artisan Details", specs: { "Material": "Clay & Mirror", "Base": "MDF / Wood", "Style": "Kutch Traditional", "Durability": "High" }},
-        "Blue Pottery": { header: "Craft Specifications", specs: { "Material": "Quartz/Glass", "Technique": "Free-Hand Paint", "Firing": "Low Heat", "Lead": "Lead-Free" }},
-        "Marble Inlay": { header: "Artisan Details", specs: { "Base": "Makrana Marble", "Inlay": "Semi-Precious Stones", "Finish": "Mirror Polish", "Origin": "Agra Heritage" }},
-        "Wood Carvings": { header: "Craft Specifications", specs: { "Wood Type": "Sheesham / Teak", "Style": "Intricate Jali", "Finish": "Natural / Wax", "Lead Time": "Order Based" }},
-        "Zardozi & Chikankari": { header: "Craft Specifications", specs: { "Fabric": "Cotton / Silk", "Work": "Hand Embroidery", "Origin": "Lucknow Artisan", "Thread": "Silk / Metallic" }},
-        "Terracotta Artifacts": { header: "Artisan Details", specs: { "Material": "Natural Clay", "Firing": "Traditional Kiln", "Finish": "Raw / Earthen" }},
-        "French Ivory": { header: "Craft Specifications", specs: { "Material": "Synthetic Resins", "Finish": "Antique Cream", "Usage": "Premium Decor" }},
-        "Camel Leather": { header: "Artisan Details", specs: { "Material": "Genuine Hide", "Tanning": "Vegetable Tanned", "Style": "Embossed", "Products": "Bags / Shoes" }}
+        "Cumin Seeds": { header: "Technical Analysis", specs: { "Purity": "99.5% Min", "Volatile Oil": "2% Min", "Moisture": "10% Max", "Grade": "Sortex Cleaned" }},
+        "Gemstone Spheres": { header: "Craft Specifications", specs: { "Material": "Natural Stone", "Finish": "High Gloss", "Custom": "Available" }},
+        "Lippan Art": { header: "Artisan Details", specs: { "Material": "Clay & Mirror", "Style": "Kutch Traditional", "Durability": "Indoor Use" }},
+        "Blue Pottery": { header: "Craft Specifications", specs: { "Material": "Quartz/Glass", "Technique": "Free-Hand Paint", "Firing": "Low Heat" }},
+        "Marble Inlay": { header: "Artisan Details", specs: { "Base": "Makrana Marble", "Inlay": "Semi-Precious Stones", "Finish": "Mirror Polish" }},
+        "Wood Carvings": { header: "Craft Specifications", specs: { "Wood": "Sheesham / Teak", "Style": "Intricate Jali", "Finish": "Natural/Wax" }},
+        "Zardozi & Chikankari": { header: "Craft Specifications", specs: { "Fabric": "Cotton / Silk", "Work": "Hand Embroidery", "Origin": "Lucknow" }},
+        "Terracotta Artifacts": { header: "Artisan Details", specs: { "Material": "Natural Clay", "Firing": "Traditional Kiln", "Eco-Status": "Green" }},
+        "French Ivory": { header: "Craft Specifications", specs: { "Material": "Synthetic Resins", "Finish": "Antique Cream", "Carving": "Detailed" }},
+        "Camel Leather": { header: "Artisan Details", specs: { "Material": "Genuine Hide", "Tanning": "Vegetable Tanned", "Style": "Embossed" }}
     };
 
     function filterProducts(category) {
@@ -227,16 +299,16 @@
         const btnAgro = document.getElementById('btn-agro'); const btnCrafts = document.getElementById('btn-crafts');
         if(category === 'agro') {
             agroList.style.display = 'grid'; craftList.style.display = 'none';
-            btnAgro.className = "nav-font px-8 py-3 rounded-full bg-[#1a472a] text-white font-bold shadow-lg transition";
-            btnCrafts.className = "nav-font px-8 py-3 rounded-full border-2 border-[#c5a059] text-[#c5a059] font-bold transition";
+            btnAgro.className = "nav-font px-8 py-4 rounded-full bg-[#1a472a] text-white font-bold shadow-lg transition";
+            btnCrafts.className = "nav-font px-8 py-4 rounded-full border-2 border-[#c5a059] text-[#c5a059] font-bold transition";
         } else {
             agroList.style.display = 'none'; craftList.style.display = 'grid';
-            btnAgro.className = "nav-font px-8 py-3 rounded-full border-2 border-[#1a472a] text-[#1a472a] font-bold transition";
-            btnCrafts.className = "nav-font px-8 py-3 rounded-full bg-[#c5a059] text-white font-bold shadow-lg transition";
+            btnAgro.className = "nav-font px-8 py-4 rounded-full border-2 border-[#1a472a] text-[#1a472a] font-bold transition";
+            btnCrafts.className = "nav-font px-8 py-4 rounded-full bg-[#c5a059] text-white font-bold shadow-lg transition";
         }
     }
 
-    function openModal(productName) {
+    function openModal(productName, category) {
         document.getElementById('productModal').classList.remove('hidden');
         document.getElementById('modalTitle').innerText = "Inquiry: " + productName;
         document.getElementById('selectedProduct').value = productName;
@@ -247,11 +319,33 @@
         const header = document.getElementById('analysisHeader');
         table.innerHTML = "";
         
+        // Update Table
         if (data) {
             header.innerText = data.header;
             for (const [key, value] of Object.entries(data.specs)) {
                 table.innerHTML += `<tr class="border-b"><td class="py-2 text-gray-400 uppercase text-[10px]">${key}</td><td class="py-2 font-bold text-right text-xs">${value}</td></tr>`;
             }
+        }
+
+        // DYNAMIC FIELD UPDATES
+        const qtyInput = document.getElementById('qtyInput');
+        const packLabel = document.getElementById('packLabel');
+        const packDropdown = document.getElementById('packDropdown');
+
+        if(category === 'crafts') {
+            qtyInput.placeholder = "e.g. 10 Units / Sets";
+            packLabel.innerText = "Packaging & Safety Pref.";
+            packDropdown.innerHTML = `
+                <option value="Premium Wooden Crates">Premium Wooden Crates (Export)</option>
+                <option value="Bubble Wrapped Box">Bubble Wrapped Safety Box</option>
+                <option value="Custom Safe Packing">Custom Safe Packing</option>`;
+        } else {
+            qtyInput.placeholder = "e.g. 5 MT";
+            packLabel.innerText = "Packaging Preference";
+            packDropdown.innerHTML = `
+                <option value="25kg Jute Bags">25kg Jute Bags</option>
+                <option value="50kg PP Bags">50kg PP Bags</option>
+                <option value="Bulk Loading">Bulk Loading</option>`;
         }
     }
 
