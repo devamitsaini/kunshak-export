@@ -17,33 +17,34 @@
     <meta property="og:url" content="https://kunshak.com">
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WholesaleStore",
-      "name": "Kunshak Exports",
-      "url": "https://kunshak.com",
-      "logo": "https://kunshak.com/logo.png",
-      "description": "Trusted Indian wholesaler of Fenugreek (Methidana), Nigella Seeds (Kalonji), and Traditional Handicrafts.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "71, Patel Nagar",
-        "addressLocality": "Jaora",
-        "addressRegion": "MP",
-        "postalCode": "457226",
-        "addressCountry": "IN"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+91-9893122319",
-        "contactType": "sales",
-        "areaServed": "Worldwide",
-        "availableLanguage": ["English", "Hindi"]
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/kunshakexport/"
-      ]
-    }
-    </script>
+{
+  "@context": "https://schema.org",
+  "@type": "WholesaleStore",
+  "name": "Kunshak Exports",
+  "legalName": "Kunshak Exports Jaora",
+  "url": "https://kunshak.com",
+  "logo": "https://kunshak.com/logo.png",
+  "foundingDate": "2026",
+  "knowsAbout": ["Spices Wholesale", "Indian Handicrafts Export", "Nigella Seeds Supply Chain", "Agro Commodities"],
+  "description": "Premium exporter of Nigella Seeds (Kalonji), Fenugreek, and authentic Indian Artisan Handicrafts from Jaora, MP.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "71, Patel Nagar",
+    "addressLocality": "Jaora",
+    "addressRegion": "MP",
+    "postalCode": "457226",
+    "addressCountry": "IN"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Export Catalog",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bulk Spices Supply" }},
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Handicrafts Sourcing" }}
+    ]
+  }
+}
+</script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -95,7 +96,12 @@
                     <p id="specFooter" class="mt-4 text-[10px] text-gray-400 italic text-center">*Details are subject to specific batch quality.</p>
                 </div>
                 
-                <form action="https://formspree.io/f/mjgarklk" method="POST" class="p-6 space-y-4">
+                <form action="https://formspree.io/f/mjgarklk" 
+                  method="POST" 
+                  class="p-6 space-y-4" 
+                  itemprop="potentialAction" 
+                  itemscope 
+                  itemtype="https://schema.org/CommunicateAction">
                     <input type="hidden" id="selectedProduct" name="product_requested">
                     <div class="grid grid-cols-2 gap-4">
                         <input type="text" name="name" placeholder="Name" required class="w-full p-3 border rounded text-sm focus:border-[#c5a059] outline-none">
@@ -346,6 +352,30 @@
         </div>
     </div>
 </section>
+
+    <section class="py-16 bg-gray-50 border-t">
+    <div class="max-w-3xl mx-auto px-6">
+        <h2 class="hero-title text-2xl text-[#1a472a] mb-8 text-center uppercase">Frequently Asked Questions</h2>
+        <div class="space-y-6" itemscope itemtype="https://schema.org/FAQPage">
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                <h3 class="font-bold text-[#1a472a] mb-2" itemprop="name">What is the minimum order quantity (MOQ) for spices?</h3>
+                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <p class="text-sm text-gray-600" itemprop="text">Our standard MOQ for spices like Kalonji and Methidana is 1 Metric Ton (MT), but we offer flexibility for first-time trial shipments.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                <h3 class="font-bold text-[#1a472a] mb-2" itemprop="name">Does Kunshak Exports provide certification for handicrafts?</h3>
+                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <p class="text-sm text-gray-600" itemprop="text">Yes, all our artisan handicrafts come with authenticity certificates and are packed in export-quality wooden crates for safety.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
     <footer class="py-12 bg-white text-center border-t text-gray-400 text-xs"><p>&copy; 2026 Kunshak Exports. All Rights Reserved.</p></footer>
 
     <script>
