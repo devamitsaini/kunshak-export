@@ -750,8 +750,9 @@
     <div class="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-[#1a472a] shadow-sm">EXPORT QUALITY</div>
     <img src="https://images.pexels.com/photos/35156984/pexels-photo-35156984.jpeg" class="h-64 w-full object-cover group-hover:scale-105 transition duration-500">
     <div class="p-6 text-center flex-grow flex flex-col">
-      <h4 class="font-bold text-xl mb-2">Fenugreek Seeds</h4>
-      <button onclick="openModal('Fenugreek Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded-xl font-bold text-xs uppercase">Enquire Now</button>
+      <h4 class="font-bold text-xl mb-2 text-[#1a472a]">Fenugreek Seeds</h4>
+      <p class="text-gray-500 text-xs mb-6 italic leading-relaxed">High-purity seeds sourced directly from Malwa farms, ideal for medicinal and culinary use.</p>
+      <button onclick="openModal('Fenugreek Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded-xl font-bold text-xs uppercase hover:bg-[#c5a059] transition">Enquire Now</button>
     </div>
   </div>
 
@@ -759,8 +760,9 @@
     <div class="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-[#1a472a] shadow-sm">EXPORT QUALITY</div>
     <img src="https://images.pexels.com/photos/35156986/pexels-photo-35156986.jpeg" class="h-64 w-full object-cover group-hover:scale-105 transition duration-500">
     <div class="p-6 text-center flex-grow flex flex-col">
-      <h4 class="font-bold text-xl mb-2">Nigella Seeds</h4>
-      <button onclick="openModal('Nigella Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded-xl font-bold text-xs uppercase">Enquire Now</button>
+      <h4 class="font-bold text-xl mb-2 text-[#1a472a]">Nigella Seeds</h4>
+      <p class="text-gray-500 text-xs mb-6 italic leading-relaxed">Premium Kalonji seeds with high oil content and deep black color, sortex cleaned for global export.</p>
+      <button onclick="openModal('Nigella Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded-xl font-bold text-xs uppercase hover:bg-[#c5a059] transition">Enquire Now</button>
     </div>
   </div>
 
@@ -768,12 +770,12 @@
     <div class="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-[#1a472a] shadow-sm">EXPORT QUALITY</div>
     <img src="https://images.pexels.com/photos/15352081/pexels-photo-15352081.jpeg" class="h-64 w-full object-cover group-hover:scale-105 transition duration-500">
     <div class="p-6 text-center flex-grow flex flex-col">
-      <h4 class="font-bold text-xl mb-2">Cumin Seeds</h4>
-      <button onclick="openModal('Cumin Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded-xl font-bold text-xs uppercase">Enquire Now</button>
+      <h4 class="font-bold text-xl mb-2 text-[#1a472a]">Cumin Seeds</h4>
+      <p class="text-gray-500 text-xs mb-6 italic leading-relaxed">Bold aroma and 99.5% purity machine-cleaned Jeera, processed to retain essential oils.</p>
+      <button onclick="openModal('Cumin Seeds', 'agro')" class="w-full mt-auto bg-[#1a472a] text-white py-3 rounded-xl font-bold text-xs uppercase hover:bg-[#c5a059] transition">Enquire Now</button>
     </div>
   </div>
 </div>
-
     <div id="craft-list" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
   
   <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 flex flex-col hover:shadow-xl transition relative group">
@@ -1498,9 +1500,17 @@
 }
 
         function closeModal() {
-          document.getElementById("productModal").classList.add("hidden");
-          document.body.style.overflow = "auto";
-        }
+    const modal = document.getElementById("productModal");
+    modal.classList.add("hidden");
+    
+    // Form ko reset karna zaroori hai taaki checkboxes aur input fields clear ho jayein
+    const form = modal.querySelector('form');
+    if (form) {
+        form.reset(); 
+    }
+    
+    document.body.style.overflow = "auto"; // Scroll wapas on karo
+}
         window.onload = function () {
           filterProducts("agro");
         };
