@@ -635,6 +635,11 @@
     </section>
 
     <script>
+
+      function toggleMobileMenu() {
+    const panel = document.getElementById('side-panel');
+    panel.classList.toggle('-translate-x-full');
+}
       let currentSlide = 0;
       const slides = document.querySelectorAll(".hero-img-slide");
 
