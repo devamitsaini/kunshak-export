@@ -131,10 +131,45 @@
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
       ></script>
       <script src="https://cdn.tailwindcss.com"></script>
-      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css&display=swap" rel="stylesheet" />
       <script src="https://unpkg.com/lucide@latest"></script>
 
       <style>
+
+        /* Performance Fix: Prevent Layout Shift */
+img {
+    content-visibility: auto;
+    aspect-ratio: 16 / 9; /* Images load hone se pehle space reserve rahegi */
+    background: #f0f0f0; /* Loader effect */
+}
+
+/* Modal UI Polish */
+#productModal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(8px); /* Modern blur effect */
+}
+
+/* Custom Checkbox Grid - To fix the 1st screenshot issue */
+.customization-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+/* Mobile Responsiveness for Modal */
+@media (max-width: 640px) {
+    #productModal .bg-white {
+        width: 95%;
+        margin: 10px;
+        border-radius: 1.5rem;
+    }
+}
+
+/* Critical CSS for Fast First Paint */
+.hero-title {
+    contain: content;
+}
+
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@300;400;700&display=swap");
         body {
           font-family: "Lato", sans-serif;
@@ -405,7 +440,7 @@
             <input type="text" id="qtyInput" name="quantity" placeholder="e.g. 5 MT" required class="w-full p-3.5 border border-gray-200 rounded-xl text-sm focus:border-[#1a472a] outline-none">
           </div>
           <div class="space-y-1">
-            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-wider ml-1">Target Delivery Date</label>
+            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-wider ml-1">Target Loading Date</label>
             <input type="date" name="target_date" class="w-full p-3.5 border border-gray-200 rounded-xl text-sm text-gray-500 focus:border-[#1a472a] outline-none">
           </div>
         </div>
@@ -1457,46 +1492,52 @@
           }
         }
 
-        function openModal(productName, category) {
+      function openModal(productName, category) {
     const modal = document.getElementById("productModal");
-    modal.classList.remove("hidden");
+    const form = modal.querySelector('form');
     
+    // 1. Pehle Form Reset karo (Checkbox Sticky issue fix)
+    form.reset(); 
+
+    // 2. Modal Details Bharo
     document.getElementById("modalTitle").innerText = "Inquiry: " + productName;
     document.getElementById("selectedProduct").value = productName;
     
-    // Select the option containers
+    // 3. Category Logic (Screenshot 1 issue fix)
     const agroBox = document.getElementById("agro-options-box");
     const craftBox = document.getElementById("craft-options-box");
-    const qtyInput = document.getElementById("qtyInput");
-    
-    // Switch Logic
+
     if (category === 'agro') {
-        agroBox.style.display = 'block'; // Show Agro options
-        craftBox.style.display = 'none';  // Hide Craft options
-        qtyInput.placeholder = "e.g. 5 MT / 1 Container";
+        agroBox.style.display = 'block'; // Block use karna safe hai
+        craftBox.style.display = 'none';
+        document.getElementById("qtyInput").placeholder = "e.g. 5 MT";
     } else {
-        agroBox.style.display = 'none';   // Hide Agro options
-        craftBox.style.display = 'block'; // Show Craft options
-        qtyInput.placeholder = "e.g. 50 Units / Sets";
+        agroBox.style.display = 'none';
+        craftBox.style.display = 'block';
+        document.getElementById("qtyInput").placeholder = "e.g. 50 Units";
     }
+
+    // 4. Modal Open & Stop Scroll
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
     
-    // Technical Data Load (Example based on your data)
-    const data = productData[productName];
-    const table = document.getElementById("specTable");
-    table.innerHTML = "";
-    if (data) {
-        document.getElementById("analysisHeader").innerHTML = `<i data-lucide="file-check" class="w-4 h-4"></i> ${data.header}`;
-        for (const [key, value] of Object.entries(data.specs)) {
-            table.innerHTML += `
-                <tr class="border-b border-gray-100 last:border-0">
-                    <td class="py-1 text-gray-400 uppercase text-[10px] font-bold tracking-tighter">${key}</td>
-                    <td class="py-1 font-bold text-right text-[12px] text-[#1a472a]">${value}</td>
-                </tr>`;
-        }
+    // Lucide icons ko refresh karna mat bhulna
+    if(typeof lucide !== 'undefined') lucide.createIcons();
+
+    // Technical Data Load logic (Isse Table mein data dikhega)
+const data = productData[productName];
+const table = document.getElementById("specTable");
+table.innerHTML = "";
+if (data) {
+    document.getElementById("analysisHeader").innerText = data.header;
+    for (const [key, value] of Object.entries(data.specs)) {
+        table.innerHTML += `
+            <tr class="border-b border-gray-100 last:border-0">
+                <td class="py-1 text-gray-400 uppercase text-[10px] font-bold">${key}</td>
+                <td class="py-1 font-bold text-right text-[12px] text-[#1a472a]">${value}</td>
+            </tr>`;
     }
-    
-    lucide.createIcons(); // Re-render icons inside modal
-    document.body.style.overflow = "hidden"; 
+}
 }
 
         function closeModal() {
